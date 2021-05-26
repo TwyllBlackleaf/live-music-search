@@ -11,14 +11,34 @@
 header {
     background-color: var(--primary);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-size: x-large;
 }
 
-jumbotron {
+h1 {
+    color: rgb(255, 255, 255);
+}
+
+.field {
+    padding: 10px;
+}
+.hero {
     background-image:url(../Images/images.jpg);
 }
 
-navbar {
+.navbar {
     background-color: var(--primary);
+}
+.search-form-section {
+    color: rgb(255, 255, 255);
+}
+
+.label {
+    color: rgb(255, 255, 255);
+}
+
+.radio {
+    color: rgb(255, 255, 255);
 }
 
 body {
@@ -32,4 +52,8 @@ body {
     width: 100%;
     display: block;
     margin: auto;
+}
+
+footer {
+    color: rgb(255, 255, 255);
 }
