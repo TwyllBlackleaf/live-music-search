@@ -1,0 +1,35 @@
+:root {
+    --primary: rgb(59, 11, 11);
+    --secondary: rgb(46, 45, 45);
+    --tertiary: rgb(255, 255, 255);
+    --light-grey: rgb(117, 114, 114);
+    --black: rgb(0, 0, 0);
+}
+
+
+
+header {
+    background-color: var(--primary);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+jumbotron {
+    background-image:url(../Images/images.jpg);
+}
+
+navbar {
+    background-color: var(--primary);
+}
+
+body {
+    background-color: var(--secondary);
+}
+
+.btn {
+    font-size: medium;
+    text-decoration: var(--tertiary);
+    padding: 5px;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
