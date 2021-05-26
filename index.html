@@ -10,15 +10,66 @@
 </head>
 <body>
     <header>
-
+        <h1>Live Music Search</h1>
+        <img src="" alt="" />
+        <nav class="navbar"></nav>
     </header>
 
-    <footer>
+    <main>
+        <div id="search-form-section">
 
+            <div class="field">
+                <label class="label">Search</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Band Name or Location" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="search-by" />
+                        Search by Band
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="search-by" />
+                        Search by Location
+                    </label>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Narrow Results by Genre</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Genre Name" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Narrow Results by Date</label>
+                <label class="label">Start Date:</label>
+                <div class="control">
+                    <input class="input" type="date" placeholder="mm/dd/yyyy" />
+                </div>
+                <label class="label">End Date:</label>
+                <div class="control">
+                    <input class="input" type="date" placeholder="mm/dd/yyyy" />
+                </div>
+            </div>
+
+        </div>
+        <div id="google-maps-section">
+
+        </div>
+        <div id="results-section">
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2021 Lester Calderon, Baron Cannon, Liliana Cortez, and Kat Dixon</p>
+        <a href="">Privacy Policy</a>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
