@@ -5,6 +5,8 @@ var searchTerm = {
 
 };
 
+var resultsListEl = $("#results-list");
+
 var getSearchTerm = function(event) {
     event.preventDefault();
 
@@ -14,21 +16,40 @@ var getSearchTerm = function(event) {
 
     console.log(searchTerm);
 
-    if (searchTerm.byBand) {
-        searchByBand();
-    } else if (searchTerm.byLocation) {
-        searchByLocation();
+    if (searchTerm.text) {
+        if (searchTerm.byBand) {
+            searchByBand();
+        } else if (searchTerm.byLocation) {
+            searchByLocation();
+        } else {
+            console.log("error, please choose band or location");
+        }
     } else {
-        console.log("error, please choose band or location");
+        console.log("error, please enter a search term");
     }
+    
 };
 
 var searchByLocation = function() {
     console.log("searching by location");
+
+
 };
 
 var searchByBand = function() {
     console.log("searching by band");
+
+    fetch("https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchTerm.text + "&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response){
+            console.log(response._embedded.events);
+            var eventsArray = response._embedded.events;
+            for (i = 0; i < eventsArray.length; i++) {
+                $(`<li id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}</a></li>`).appendTo(resultsListEl);
+            }
+        })    
 };
 
 $("#search-button").on("click", getSearchTerm);
