@@ -24,45 +24,50 @@
     </header>
 
     <main>
-        <div id="search-form-section">
+        <form id="search-form-section">
 
             <div class="field">
-                <label class="label">Search</label>
+                <label class="label" for="search">Search</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Band Name or Location" />
+                    <input class="input" type="text" id="search" name="search" placeholder="Band Name or Location" />
                 </div>
             </div>
             <div class="field">
                 <div class="control">
                     <label class="radio">
-                        <input type="radio" name="search-by" />
+                        <input type="radio" name="search-by" id="by-band" />
                         Search by Band
                     </label>
                     <label class="radio">
-                        <input type="radio" name="search-by" />
+                        <input type="radio" name="search-by" id="by-location" />
                         Search by Location
                     </label>
                 </div>
             </div>
             <div class="field">
-                <label class="label">Narrow Results by Genre</label>
+                <label class="label" for="genre">Narrow Results by Genre</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Genre Name" />
+                    <input class="input" type="text" id="genre" placeholder="Genre Name" />
                 </div>
             </div>
             <div class="field">
                 <label class="label">Narrow Results by Date</label>
-                <label class="label">Start Date:</label>
+                <label class="label" for="start-date">Start Date:</label>
                 <div class="control">
-                    <input class="input" type="date" placeholder="mm/dd/yyyy" />
+                    <input class="input" type="date" id="start-date" placeholder="mm/dd/yyyy" />
                 </div>
-                <label class="label">End Date:</label>
+                <label class="label" for="end-date">End Date:</label>
                 <div class="control">
-                    <input class="input" type="date" placeholder="mm/dd/yyyy" />
+                    <input class="input" type="date" id="end-date" placeholder="mm/dd/yyyy" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" id="search-button" type="submit">Search</button>
                 </div>
             </div>
 
-        </div>
+        </form>
         <div id="google-maps-section">
 
         </div>
