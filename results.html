@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Music Results</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/results.css">
 </head>
 <body>
     <!--add header, Jumbotron, and navbar-->
@@ -36,9 +36,13 @@
         </div>
     </div>
     <div class="bandInfo-container">
-        <div class="band-info">
-        <p>Google Maps here</p>
-        </div>
+        <h1>Venue</h1>
+        <div id="map"></div>
+        <div id="pano"></div>
+        <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback=initialize&libraries=&v=weekly"
+      async
+    ></script>
     </div>
     <div class="bandInfo-container">
         <div class="band-info">
@@ -54,7 +58,8 @@
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery.googlemap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/results.js"></script>
 </body>
 </html>
