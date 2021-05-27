@@ -15,20 +15,24 @@ header {
     font-size: x-large;
 }
 
+.level {
+    background-color: var(--light-grey);
+}
+
 h1 {
     color: rgb(255, 255, 255);
 }
 
-.field {
-    padding: 10px;
-}
-.hero {
-    background-image:url(../Images/images.jpg);
+
+a {
+    color: rgb(255, 255, 255);
+
 }
 
-.navbar {
-    background-color: var(--primary);
+.card {
+    background-color: var(--secondary);
 }
+
 .search-form-section {
     color: rgb(255, 255, 255);
 }
@@ -48,7 +52,6 @@ body {
 .btn {
     font-size: medium;
     text-decoration: var(--tertiary);
-    padding: 5px;
     width: 100%;
     display: block;
     margin: auto;
