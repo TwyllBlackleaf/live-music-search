@@ -22,9 +22,11 @@ var getSearchTerm = function(event) {
         } else if (searchTerm.byLocation) {
             searchByLocation();
         } else {
+            // insert error modal here
             console.log("error, please choose band or location");
         }
     } else {
+        // insert error modal here
         console.log("error, please enter a search term");
     }
     
@@ -47,7 +49,7 @@ var searchByBand = function() {
             console.log(response._embedded.events);
             var eventsArray = response._embedded.events;
             for (i = 0; i < eventsArray.length; i++) {
-                $(`<li id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}</a></li>`).appendTo(resultsListEl);
+                $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}</a></li>`).appendTo(resultsListEl);
             }
         })    
 };
