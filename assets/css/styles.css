@@ -29,8 +29,13 @@ a {
 
 }
 
+main {
+    padding-left: 10px;
+}
+
 .card {
     background-color: var(--secondary);
+    padding-left: 10px;
 }
 
 .search-form-section {
@@ -48,6 +53,14 @@ a {
 body {
     background-color: var(--secondary);
 }
+
+.block:not(:last-child) {
+    margin-bottom: 1.5rem;
+    background-color: var(--light-grey);
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: x-large;
+  }
 
 .btn {
     font-size: medium;

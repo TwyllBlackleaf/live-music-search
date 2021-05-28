@@ -1,17 +1,46 @@
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-
-.bandInfo{
-    position: none;
+:root {
+  --primary: rgb(59, 11, 11);
+  --secondary: rgb(46, 45, 45);
+  --tertiary: rgb(255, 255, 255);
+  --light-grey: rgb(117, 114, 114);
+  --black: rgb(0, 0, 0);
 }
+html {
+  background-color: var(--secondary);
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+}
+
+a {
+  color: rgb(255, 255, 255);
+
+}
+
+.level {
+  background-color: var(--light-grey);
+}
+
+header {
+  background-color: var(--primary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: x-large;
+}
+
+.bandInfo {
+  position: none;
+}
+
 #map,
 #pano {
-    float:right;
-    height: 30rem;
-    width: 30rem;
-  }
-
+  float: right;
+  height: 30rem;
+  width: 30rem;
+}
