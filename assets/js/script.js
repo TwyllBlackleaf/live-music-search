@@ -65,6 +65,11 @@ var getSearchTerm = function(event) {
 var searchByLocation = function() {
     console.log("searching by location");
 
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({"address": searchTerm.text}, function(results) {
+        console.log(results);
+    } )
+
 
 };
 
