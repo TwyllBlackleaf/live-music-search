@@ -35,7 +35,15 @@ header {
 }
 
 .bandInfo {
-  position: none;
+  color: var(--tertiary);
+}
+
+.venue {
+  color: var(--tertiary);
+}
+
+.show-times {
+  color: var(--tertiary);
 }
 
 #map,
