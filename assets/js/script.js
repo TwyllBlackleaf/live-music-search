@@ -21,7 +21,18 @@ var searchTerm = {
     text: "",
     byBand: false,
     byLocation: false,
-
+//modal errors for google map local 
+    //if (searchTerm.text) {
+       // if (searchTerm.byBand) {
+         //   searchByBand();
+       // } else if (searchTerm.byLocation) {
+         //   searchByLocation();
+       // } else {
+         //   console.log("error, please choose band or location");
+       // }
+   // } else {
+     //   console.log("error, please enter a search term");
+    //}
 };
 
 var resultsListEl = $("#results-list");
