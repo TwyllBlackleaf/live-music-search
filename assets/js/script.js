@@ -1,3 +1,21 @@
+// Table of Contents
+// S1. Global Variables
+// S2. Google Maps Handling
+// S3. Search Form Handling
+// S4. Event Listeners
+
+// S1. Global Variables
+var searchTerm = {
+    text: "",
+    byBand: false,
+    byLocation: false,
+    lat: 0,
+    long: 0
+};
+
+var resultsListEl = $("#results-list");
+
+//S2. Google Maps Handling
 //Google Maps API fetch & searchTerm Intergration 
 function searchLocal(){
     var searchTerm = document.querySelector('#userInput').value;
@@ -17,15 +35,8 @@ function searchLocal(){
             responseContainerEL.appendChild(mapImg);
         });
 }
-var searchTerm = {
-    text: "",
-    byBand: false,
-    byLocation: false,
 
-};
-
-var resultsListEl = $("#results-list");
-
+// S3. Search Form Handling
 var getSearchTerm = function(event) {
     event.preventDefault();
 
@@ -41,9 +52,11 @@ var getSearchTerm = function(event) {
         } else if (searchTerm.byLocation) {
             searchByLocation();
         } else {
+            // insert error modal here
             console.log("error, please choose band or location");
         }
     } else {
+        // insert error modal here
         console.log("error, please enter a search term");
     }
     
@@ -71,4 +84,5 @@ var searchByBand = function() {
         })    
 };
 
+// S4. Event Listeners
 $("#search-button").on("click", getSearchTerm);
