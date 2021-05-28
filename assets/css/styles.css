@@ -1,0 +1,62 @@
+:root {
+    --primary: rgb(59, 11, 11);
+    --secondary: rgb(46, 45, 45);
+    --tertiary: rgb(255, 255, 255);
+    --light-grey: rgb(117, 114, 114);
+    --black: rgb(0, 0, 0);
+}
+
+
+
+header {
+    background-color: var(--primary);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+}
+
+.level {
+    background-color: var(--light-grey);
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+}
+
+
+a {
+    color: rgb(255, 255, 255);
+
+}
+
+.card {
+    background-color: var(--secondary);
+}
+
+.search-form-section {
+    color: rgb(255, 255, 255);
+}
+
+.label {
+    color: rgb(255, 255, 255);
+}
+
+.radio {
+    color: rgb(255, 255, 255);
+}
+
+body {
+    background-color: var(--secondary);
+}
+
+.btn {
+    font-size: medium;
+    text-decoration: var(--tertiary);
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+footer {
+    color: rgb(255, 255, 255);
+}
