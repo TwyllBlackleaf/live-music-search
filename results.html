@@ -30,29 +30,45 @@
     </header>
 
     <!--add div for band info containers and maps-->
-    <div class="bandInfo-container">
-        <div class="band-info">
-            <img src="" alt="">
+    <div class="container">
+        <div class="level-left">
+            <div class="bandInfo-container">
+                <div class="band-info">
+                    <img src="" alt="">
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bandInfo-container">
-        <div class="band-info">
-            <p>band details</p>
+    <div class="container">
+        <div class="level-left">
+            <div class="bandInfo">
+                <div class="band-info">
+                    <p>band details</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bandInfo-container">
-        <h1>Venue</h1>
-        <div id="map"></div>
-        <div id="pano"></div>
-        <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback=initialize&libraries=&v=weekly"
-      async
-    ></script>
-    </div>
-    <div class="bandInfo-container">
-        <div class="band-info">
-           <placeholder>placeholder</placeholder>
+    <div class="container">
+        <div class="level-right">
+            <div class="venue">
+                <h1>Venue</h1>
+                <div id="map"></div>
+                <div id="pano"></div>
+                <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback=initialize&libraries=&v=weekly"
+              async
+            ></script>
+            </div>
         </div>
+    </div>
+    
+    <div class="container">
+        <div class="level-left">
+            <div class="show-times">
+                <placeholder>show-times</placeholder>
+             </div>
+        </div>
+        
     </div>
 
     <!--footer information-->
