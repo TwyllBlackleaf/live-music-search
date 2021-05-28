@@ -1,17 +1,17 @@
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-
-.bandInfo{
-    position: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+
+.bandInfo {
+  position: none;
+}
+
 #map,
 #pano {
-    float:right;
-    height: 30rem;
-    width: 30rem;
-  }
-
+  float: right;
+  height: 30rem;
+  width: 30rem;
+}
