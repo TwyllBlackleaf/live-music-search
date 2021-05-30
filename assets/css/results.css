@@ -8,6 +8,15 @@
 html {
   background-color: var(--secondary);
 }
+
+.hero {
+  height: 400px;
+  width: 100%;
+  background-image: url("../Images/musician-2708190_1920-1170x550.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 body {
   height: 100%;
   margin: 0;
@@ -26,7 +35,11 @@ a {
 .level {
   background-color: var(--light-grey);
 }
-
+.venue {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 header {
   background-color: var(--primary);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -34,12 +47,24 @@ header {
   font-size: x-large;
 }
 
-.bandInfo {
+.box {
+  position: relative;
+  background-color: var(--primary);
   color: var(--tertiary);
+  height: fit-content;
+  width: fit-content;
+  margin-top: 20px;
+  margin-right: 100px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 5px;
 }
+
+
 
 .venue {
   color: var(--tertiary);
+  margin-top: 10px;
 }
 
 .show-times {
