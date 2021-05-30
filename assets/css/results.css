@@ -24,11 +24,11 @@ body {
 }
 
 h1 {
-  color: rgb(255, 255, 255);
+  color: var(--tertiary);
 }
 
 a {
-  color: rgb(255, 255, 255);
+  color: var(--tertiary);
 
 }
 
