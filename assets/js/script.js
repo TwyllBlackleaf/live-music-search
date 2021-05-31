@@ -78,15 +78,6 @@ function addMarker(location, map) {
 }
 }
 
-
-var searchTerm = {
-    text: "",
-    byBand: false,
-    byLocation: false,
-};
-
-var resultsListEl = $("#results-list");
-
 // S3. Search Form Handling
 var getSearchTerm = function(event) {
     event.preventDefault();
@@ -118,8 +109,28 @@ var searchByLocation = function() {
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({"address": searchTerm.text}, function(results) {
-        console.log(results);
-    } )
+        searchTerm.lat = results[0].geometry.location.lat();
+        searchTerm.long = results[0].geometry.location.lng();
+        console.log(searchTerm);
+
+        fetch(`https://app.ticketmaster.com/discovery/v2/events.json?latlong=${searchTerm.lat},${searchTerm.long}&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9&radius=25&classificationName=music`)
+            .then(function(response) {
+                return(response.json());
+            })
+            .then(function(response) {
+                console.log(response._embedded.events);
+                var eventsArray = response._embedded.events;
+                for (i = 0; i < eventsArray.length; i++) {
+                    for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
+                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventsArray[i]._embedded.venues[j].name}</a></li>`).appendTo(resultsListEl);
+                    }
+                }
+        })
+    })
+
+    
+ 
+
 
 
 };
