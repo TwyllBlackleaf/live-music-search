@@ -18,7 +18,7 @@ header {
     background-color: var(--primary);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 
@@ -41,17 +41,15 @@ a {
 
 }
 
-main {
-    padding-left: 10px;
+.card-header {
+    background-color: var(--primary);
+    
 }
 
-.card {
-    background-color: var(--secondary);
-    padding-left: 10px;
-}
-
-.search-form-section {
+#search-form-section {
     color: rgb(255, 255, 255);
+    padding-left: 5px;
+    padding-bottom: 15px;
 }
 
 .label {
@@ -67,6 +65,7 @@ body {
 }
 
 .block:not(:last-child) {
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     background-color: var(--primary);
     padding-left: 10px;
@@ -82,6 +81,10 @@ body {
     margin: auto;
 }
 
+
 footer {
-    color: rgb(255, 255, 255);
-}
+    margin-top: 200px;
+    color: var(--tertiary);
+    text-align: center;
+  }
+  

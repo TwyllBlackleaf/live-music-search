@@ -17,7 +17,11 @@
     background-position: center;
   }
 
-  
+  section {
+    border-radius: 50px;
+    background-color: var(--primary);
+    margin-top: 50px;
+  }
   
   body {
     height: 100%;
@@ -44,4 +48,14 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: x-large;
+  }
+
+  h4 {
+    color: var(--tertiary);
+  }
+
+  footer {
+    margin-top: 200px;
+    color: var(--tertiary);
+    text-align: center;
   }
