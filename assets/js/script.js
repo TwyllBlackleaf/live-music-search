@@ -24,10 +24,10 @@ function searchLocal() {
         'https://www.google.com/maps/embed/v1/place?api_key=AIzaSyBcsR3u8CFQz51MueJdmvZvTyF8MWwvegw&q=' +
         searchTerm
     )
-        .then(function (response) {
+        .then(function(response) {
             return response.json();
         })
-        .then(function (data) {
+        .then(function(data) {
             console.log(data);
             var responseContainerEL = document.querySelector('#google-maps-section');
             var mapImg = document.createElement('img');
@@ -37,7 +37,7 @@ function searchLocal() {
 }
 
 // S3. Search Form Handling
-var getSearchTerm = function (event) {
+var getSearchTerm = function(event) {
     event.preventDefault();
 
     searchTerm.text = $("#search").val();
@@ -62,20 +62,20 @@ var getSearchTerm = function (event) {
 
 };
 
-var searchByLocation = function () {
+var searchByLocation = function() {
     console.log("searching by location");
 
 
 };
 
-var searchByBand = function () {
+var searchByBand = function() {
     console.log("searching by band");
 
     fetch("https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchTerm.text + "&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9")
-        .then(function (response) {
+        .then(function(response) {
             return response.json();
         })
-        .then(function (response) {
+        .then(function(response) {
             console.log(response._embedded.events);
             var eventsArray = response._embedded.events;
             for (i = 0; i < eventsArray.length; i++) {
