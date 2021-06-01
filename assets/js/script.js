@@ -13,12 +13,27 @@ var searchTerm = {
     long: 0
 };
 
+//favorites from local storage
+const FAVORITES_STORAGE_KEY = 'favorites'
+let results = []
+
+
+if (localStorage.getItem(FAVORITES_STORAGE_KEY)) {
+    results = JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY))
+    console.log(results);
+} 
+
+
 var resultsListEl = $("#results-list");
 
 //S2. Google Maps Handling
 //Google Maps API fetch & searchTerm Intergration 
 function searchLocal() {
     var searchTerm = document.querySelector('#userInput').value;
+    
+    results.push(searchTerm)
+    localStorage.setItem(FAVORITES_STORAGE_KEY, results);
+    
 
     fetch(
         'https://www.google.com/maps/embed/v1/place?api_key=AIzaSyBcsR3u8CFQz51MueJdmvZvTyF8MWwvegw&q=' +
@@ -46,6 +61,11 @@ var getSearchTerm = function(event) {
 
     console.log(searchTerm);
 
+    results.push(searchTerm.text)
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(results));
+    favoritesSearch();
+
+    
     if (searchTerm.text) {
         if (searchTerm.byBand) {
             searchByBand();
@@ -124,16 +144,8 @@ dropDownActive.click(() => {
     dropDownActive.addClass("is-active")
 });
 
-//favorites by localstorage
-let results = []
 
-const FAVORITES_STORAGE_KEY = 'favorites'
-
-if (localStorage.getItem(FAVORITES_STORAGE_KEY)) {
-    results = localStorage.getItem(FAVORITES_STORAGE_KEY)
-}
-
-results = [ "band", "music", "live" ]
+function favoritesSearch() {
 
 html = ""
 for (let i = 0; i < results.length; i++) {
@@ -154,11 +166,16 @@ var favoriteSearchEl = $(".dropdown-item").click((e) => {
   $(".dropdown-trigger button span:first-child").html(selected)
 });
 
-$(".button.is-success").click(() => {
+$(".button.is-success").click((e) => {
+    e.stopPropagation()
     $(".button.is-success")
     $(".modal").removeClass("is-active")
-    window.location.href = 'results.html?favorites=' + selected
+    $(".input#search").val(selected)
 });
+
+};
+
+
 
 
 
