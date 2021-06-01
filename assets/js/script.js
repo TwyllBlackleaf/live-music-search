@@ -10,46 +10,40 @@ var searchTerm = {
     byBand: false,
     byLocation: false,
     lat: 0,
-    long: 0
+    long: 0,
+    firstLat: 0,
+    firstLong: 0
 };
 
 var resultsListEl = $("#results-list");
 
+
 //S2. Google Maps Handling
-//Google Maps API fetch & searchTerm Intergration 
+function initMap() {
+    // Default to centering the map on Vanderbilt
+    var mapCenter = { lat: 36.1447034, lng: -86.8048491 };
 
-function searchLocal(){
-    var searchTermLocal = document.querySelector('#userInput').value;
+    if (searchTerm.byBand) {
+        // If searching by band, center the map on the location of the first event's venue
+        mapCenter.lat = parseInt(searchTerm.firstLat); 
+        mapCenter.lng = parseInt(searchTerm.firstLong);
+    } else if (searchTerm.byLocation) {
+        // If searching by location, set the center of the map to the searched location
+        mapCenter.lat = searchTerm.lat;
+        mapCenter.lng = searchTerm.long;
+    }
 
-    fetch(
-        'https://www.google.com/maps/embed/v1/place?api_key=AIzaSyBcsR3u8CFQz51MueJdmvZvTyF8MWwvegw&q=' +
-        searchTermLocal
-    )
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-            var responseContainerEL = document.querySelector('#google-maps-section');
-            var mapImg = document.createElement('img');
-            mapImg.setAttribute('src', response.data.image_url);
-            responseContainerEL.appendChild(mapImg);
-        });
+    // Initialize the map
+    var map = new google.maps.Map(document.getElementById("google-maps-section"), {
+        zoom: 10,
+        center: mapCenter,
+    });
 
-        if (searchTermLocal.text) {
-            if (searchTermLocal.byBand) {
-                searchByBand();
-            } else if (searchTerm.byLocation) {
-                searchByLocation();
-            } else {
-                console.log("error, please choose band or location");
-            }
-        } else {
-            console.log("error, please enter a search term");
-        }
+    return map;
+
 }
 
-function addMarkerMap(){
+function addMarkerMap() {
     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let labelIndex = 0;
 
@@ -58,30 +52,33 @@ function addMarkerMap(){
         const map = new google.maps.Map(document.getElementById("map"), {
          zoom: 12,
          center: bangalore,
-    });
-  // This event listener calls addMarker() when the map is clicked.
-    google.maps.event.addListener(map, "click", (event) => {
-    addMarker(event.latLng, map);
-     });
-  // Add a marker at the center of the map.
-     addMarker(bangalore, map);
-}
+        });
 
-// Adds a marker to the map.
-function addMarker(location, map) {
-  // Add the marker at the clicked location, and add the next-available label
-  // from the array of alphabetical characters.
-  new google.maps.Marker({
-    position: location,
-    label: labels[labelIndex++ % labels.length],
-    map: map,
-  });
-}
+        // This event listener calls addMarker() when the map is clicked.
+        google.maps.event.addListener(map, "click", (event) => {
+        addMarker(event.latLng, map);
+        });
+        // Add a marker at the center of the map.
+        addMarker(bangalore, map);
+        }
+
+    // Adds a marker to the map.
+    function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    new google.maps.Marker({
+        position: location,
+        label: labels[labelIndex++ % labels.length],
+        map: map,
+        });
+    }
 }
 
 // S3. Search Form Handling
 var getSearchTerm = function(event) {
     event.preventDefault();
+
+    $("#results-list").text("");
 
     searchTerm.text = $("#search").val();
     searchTerm.byBand = $("#by-band").prop("checked");
@@ -126,14 +123,11 @@ var searchByLocation = function() {
                         $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventsArray[i]._embedded.venues[j].name}</a></li>`).appendTo(resultsListEl);
                     }
                 }
-        })
+
+                initMap();
+            
+            })
     })
-
-    
- 
-
-
-
 };
 
 var searchByBand = function() {
@@ -146,12 +140,16 @@ var searchByBand = function() {
         .then(function(response) {
             console.log(response._embedded.events);
             var eventsArray = response._embedded.events;
+            searchTerm.firstLat = eventsArray[0]._embedded.venues[0].location.latitude;
+            searchTerm.firstLong = eventsArray[0]._embedded.venues[0].location.longitude;
             for (i = 0; i < eventsArray.length; i++) {
                 for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
                     $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventsArray[i]._embedded.venues[j].name}</a></li>`).appendTo(resultsListEl);
                 }
             }
-        })
+
+            initMap();
+        })    
 };
 
 // S4. Event Listeners

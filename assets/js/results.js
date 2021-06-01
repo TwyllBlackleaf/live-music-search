@@ -1,5 +1,17 @@
 const apiKey = "AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8";
 
+var getTicketmasterInfo = function() {
+    var id = document.location.search;
+    id = id.split("=")[1];
+
+    fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9`)
+        .then(function(response) {
+            return(response.json());
+        })
+        .then(function(response) {
+            console.log(response);
+        })
+}
 
 function initialize() {
     const fenway = { lat: 36.161248, lng: -86.778471 };
@@ -19,3 +31,6 @@ function initialize() {
     );
     map.setStreetView(panorama);
   }
+
+
+  getTicketmasterInfo();

@@ -81,6 +81,10 @@ body {
     margin: auto;
 }
 
+#google-maps-section {
+    height: 400px;
+    width: 400px;
+}
 
 footer {
     margin-top: 200px;
