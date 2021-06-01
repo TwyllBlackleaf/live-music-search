@@ -82,6 +82,11 @@ body {
     margin: auto;
 }
 
+#google-maps-section {
+    height: 400px;
+    width: 400px;
+}
+
 footer {
     color: rgb(255, 255, 255);
 }
