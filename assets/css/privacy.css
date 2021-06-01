@@ -8,6 +8,13 @@
   html {
     background-color: var(--secondary);
   }
+
+  header {
+    background-color: var(--primary);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+  }
   
   .hero {
     height: 400px;
@@ -34,15 +41,15 @@
   
   .level {
     background-color: var(--light-grey);
+    height: 50px;
   }
   
-  
-  header {
-    background-color: var(--primary);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  footer {
+    margin-top: 200px;
+    color: var(--tertiary);
     text-align: center;
-    font-size: x-large;
   }
+  
   
   
  
