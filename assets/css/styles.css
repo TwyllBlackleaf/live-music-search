@@ -6,7 +6,13 @@
     --black: rgb(0, 0, 0);
 }
 
-
+.hero {
+    height: 400px;
+    width: 100%;
+    background-image: url("../Images/musician-2708190_1920-1170x550.jpg");
+    background-size: cover;
+    background-position: center;
+}
 
 header {
     background-color: var(--primary);
@@ -15,31 +21,35 @@ header {
     font-size: x-large;
 }
 
+
+
 .level {
     background-color: var(--light-grey);
+    height: 50px;
 }
 
-h1 {
+h1, h2, h3, h4 {
     color: rgb(255, 255, 255);
 }
 
+p {
+    color: rgb(255, 255, 255);
+}
 
 a {
     color: rgb(255, 255, 255);
 
 }
 
-main {
-    padding-left: 10px;
+.card-header {
+    background-color: var(--primary);
+    
 }
 
-.card {
-    background-color: var(--secondary);
-    padding-left: 10px;
-}
-
-.search-form-section {
+#search-form-section {
     color: rgb(255, 255, 255);
+    padding-left: 5px;
+    padding-bottom: 15px;
 }
 
 .label {
@@ -55,8 +65,9 @@ body {
 }
 
 .block:not(:last-child) {
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    background-color: var(--light-grey);
+    background-color: var(--primary);
     padding-left: 10px;
     font-weight: bold;
     font-size: x-large;
@@ -70,19 +81,10 @@ body {
     margin: auto;
 }
 
+
 footer {
-    color: rgb(255, 255, 255);
+    margin-top: 200px;
+    color: var(--tertiary);
+    text-align: center;
 }
-
-/* modal styles */
-
-.modal-card-body {
-    display: flex;
-    justify-content: center;
-}
-
-.dropdown {
-    margin: 100px;
-} 
-
-
+ 
