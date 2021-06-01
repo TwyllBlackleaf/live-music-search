@@ -6,23 +6,35 @@
     --black: rgb(0, 0, 0);
 }
 
-
+.hero {
+    height: 400px;
+    width: 100%;
+    background-image: url("../Images/musician-2708190_1920-1170x550.jpg");
+    background-size: cover;
+    background-position: center;
+}
 
 header {
     background-color: var(--primary);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
-    font-size: x-large;
+    font-size: xx-large;
 }
+
+
 
 .level {
     background-color: var(--light-grey);
+    height: 50px;
 }
 
-h1 {
+h1, h2, h3, h4 {
     color: rgb(255, 255, 255);
 }
 
+p {
+    color: rgb(255, 255, 255);
+}
 
 a {
     color: rgb(255, 255, 255);
@@ -56,7 +68,7 @@ body {
 
 .block:not(:last-child) {
     margin-bottom: 1.5rem;
-    background-color: var(--light-grey);
+    background-color: var(--primary);
     padding-left: 10px;
     font-weight: bold;
     font-size: x-large;
