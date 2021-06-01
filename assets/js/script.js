@@ -17,8 +17,6 @@ var searchTerm = {
 
 var resultsListEl = $("#results-list");
 
-    
-
 
 //S2. Google Maps Handling
 function initMap() {
