@@ -116,6 +116,8 @@ var searchByLocation = function() {
                 var eventsArray = response._embedded.events;
                 var map1 = initMap();
 
+                var bounds = new google.maps.LatLngBounds();
+
                 for (i = 0; i < eventsArray.length; i++) {
                     for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
                         var eventLocation = eventsArray[i]._embedded.venues[j].name
@@ -127,16 +129,19 @@ var searchByLocation = function() {
                                 lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
                                 lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
                             }
-                            console.log(markerLatLng);
         
                             new google.maps.Marker({
                                 position: markerLatLng,
                                 map: map1,
                                 title: eventLocation
                             })
+
+                            bounds.extend(markerLatLng);
                         }
                     }
                 }
+
+                map1.fitBounds(bounds); 
 
                 
             })
@@ -157,6 +162,8 @@ var searchByBand = function() {
             searchTerm.firstLong = eventsArray[0]._embedded.venues[0].location.longitude;
 
             var map1 = initMap();
+
+            var bounds = new google.maps.LatLngBounds();
             
 
             for (i = 0; i < eventsArray.length; i++) {
@@ -171,23 +178,19 @@ var searchByBand = function() {
                             lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
                             lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
                         }
-                        console.log(markerLatLng);
     
                         new google.maps.Marker({
                             position: markerLatLng,
                             map: map1,
                             title: eventLocation
                         })
+
+                        bounds.extend(markerLatLng);
                     }
-                     
-
-                    
-
                 }
             }
 
-
-            
+            map1.fitBounds(bounds); 
         })    
 };
 
