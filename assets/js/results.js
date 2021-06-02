@@ -13,6 +13,7 @@ var getTicketmasterInfo = function() {
         .then(function(response) {
 
           // this gets the dateTime from the json object returned by the fetch call 
+
             let localDate = response.dates.start.localDate;
             let localTime = response.dates.start.localTime;
 
@@ -29,13 +30,15 @@ var getTicketmasterInfo = function() {
             let showTimesMarkup = document.createElement("p");
 
     
+
             showTimesMarkup.textContent += localDate + localTime;
 
             showTimes.appendChild(showTimesMarkup);
 
             
+
             
-            
+
 
 
               let getLocation = response. _embedded.venues.location;
@@ -56,6 +59,7 @@ var getTicketmasterInfo = function() {
               );
               map.setStreetView(panorama);
             
+
             
         })
 }
