@@ -15,10 +15,22 @@ var searchTerm = {
     firstLong: 0
 };
 
+//favorites from local storage
+const FAVORITES_STORAGE_KEY = 'favorites'
+let results = []
+
+
+if (localStorage.getItem(FAVORITES_STORAGE_KEY)) {
+    results = JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY))
+    console.log(results);
+} 
+
+
 var resultsListEl = $("#results-list");
 
 
 //S2. Google Maps Handling
+
 function initMap() {
     // Default to centering the map on Vanderbilt
     var mapCenter = { lat: 36.1447034, lng: -86.8048491 };
@@ -86,6 +98,11 @@ var getSearchTerm = function(event) {
 
     console.log(searchTerm);
 
+    results.push(searchTerm.text)
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(results));
+    favoritesSearch();
+
+    
     if (searchTerm.text) {
         if (searchTerm.byBand) {
             searchByBand();
@@ -192,16 +209,8 @@ dropDownActive.click(() => {
     dropDownActive.addClass("is-active")
 });
 
-//favorites by localstorage
-let results = []
 
-const FAVORITES_STORAGE_KEY = 'favorites'
-
-if (localStorage.getItem(FAVORITES_STORAGE_KEY)) {
-    results = localStorage.getItem(FAVORITES_STORAGE_KEY)
-}
-
-results = [ "band", "music", "live" ]
+function favoritesSearch() {
 
 html = ""
 for (let i = 0; i < results.length; i++) {
@@ -222,11 +231,16 @@ var favoriteSearchEl = $(".dropdown-item").click((e) => {
   $(".dropdown-trigger button span:first-child").html(selected)
 });
 
-$(".button.is-success").click(() => {
+$(".button.is-success").click((e) => {
+    e.stopPropagation()
     $(".button.is-success")
     $(".modal").removeClass("is-active")
-    window.location.href = 'results.html?favorites=' + selected
+    $(".input#search").val(selected)
 });
+
+};
+
+
 
 
 
