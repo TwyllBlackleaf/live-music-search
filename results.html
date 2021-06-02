@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,58 +9,74 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="assets/css/results.css">
 </head>
+
 <body>
     <!--add header, Jumbotron, and navbar-->
     <header>
         <div class="jumbotron-container">
-            <jumbotron id="Hero"></jumbotron>
-            <nav id="navigation">
-                <ul>
-                    <li>Home</li>
-                    <li>Results</li>
-                    <li>Contact Us</li>
-                    <li>Privacy Policy</li>
-                </ul>
+            <h1>Live Music Search</h1>
+            <section class="hero"></section>
+            <nav class="level">
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href="./index.html">Home</a>
+                </p>
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href="./about.html">About</a>
+                </p>
+
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
+                </p>
             </nav>
         </div>
     </header>
 
     <!--add div for band info containers and maps-->
-    <div class="bandInfo-container">
-        <div class="band-info">
-            <img src="" alt="">
+
+    <div class="container">
+        <div class="box">
+            <div class="level-left">
+                <div class="bandInfo">
+                    <p>band details</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bandInfo-container">
-        <div class="band-info">
-            <p>band details</p>
+
+    <div class="container">
+        <div class="box">
+            <div class="level-left">
+                <div class="show-times">
+                    <placeholder>show-times</placeholder>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bandInfo-container">
-        <h1>Venue</h1>
-        <div id="map"></div>
-        <div id="pano"></div>
-        <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback=initialize&libraries=&v=weekly"
-      async
-    ></script>
-    </div>
-    <div class="bandInfo-container">
-        <div class="band-info">
-           <placeholder>placeholder</placeholder>
+
+    <div class="container">
+        <div class="level-right">
+            <div class="venue">
+                <h1>Venue</h1>
+                <div id="map"></div>
+                <div id="pano"></div>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback=initialize&libraries=&v=weekly"
+                    async></script>
+            </div>
         </div>
     </div>
+
+
 
     <!--footer information-->
     <footer>
-    
-    
+        <p>© 2021 Lester Calderon, Baron Cannon, Liliana Cortes, Kat Dixon, and Conor Welsh</p>
     </footer>
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="jquery.googlemap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="assets/js/results.js"></script>
 </body>
+
 </html>
