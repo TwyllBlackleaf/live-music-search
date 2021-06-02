@@ -29,11 +29,7 @@
     margin: 0;
     padding: 0;
   }
-  
-  h1 {
-    color: var(--tertiary);
-  }
-  
+    
   a {
     color: var(--tertiary);
   
@@ -46,7 +42,6 @@
   
   footer {
     margin-top: 200px;
-    color: var(--tertiary);
     text-align: center;
   }
   

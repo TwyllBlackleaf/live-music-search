@@ -4,12 +4,38 @@ var getTicketmasterInfo = function() {
     var id = document.location.search;
     id = id.split("=")[1];
 
+
+
     fetch(`https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9`)
         .then(function(response) {
             return(response.json());
         })
         .then(function(response) {
-            console.log(response);
+
+          // this gets the dateTime from the json object returned by the fetch call 
+            let dateTime = response.dates.start.dateTime;
+
+            let imgUrl = response.images[0].url;
+            img = document.createElement("img");
+            img.src = imgUrl;
+            let bandInfo = document.getElementsByClassName("bandInfo")[0];
+            bandInfo.appendChild(img)
+
+     
+
+            let showTimes = document.getElementsByClassName("show-times")[0];
+
+            let showTimesMarkup = document.createElement("p");
+
+    
+            showTimesMarkup.textContent += dateTime;
+
+            showTimes.appendChild(showTimesMarkup);
+            
+            
+
+
+            
         })
 }
 
