@@ -125,7 +125,6 @@ var searchByLocation = function() {
                 }
 
                 initMap();
-            
             })
     })
 };
