@@ -13,8 +13,8 @@
 <body>
     <header>
         <div class="jumbotron-container">
-            <br><h1>Live Music Search</h1><br>
-            <jumbotron id="Hero"></jumbotron>
+            <h1 class="has-text-white">Live Music Search</h1>
+            <section class="hero"></section>
 
             <nav class="level">
                 <p class="level-item has-text-centered">
@@ -38,7 +38,8 @@
                 <div class="field">
                     <label class="label" for="search">Search</label>
                     <div class="control">
-                        <input class="input" type="text" id="search" name="search" placeholder="Band Name or Location" />
+                        <input class="input" type="text" id="search" name="search"
+                            placeholder="Band Name or Location" />
                     </div>
                 </div>
                 <div class="field">
@@ -71,16 +72,58 @@
                     </div>
                 </div>
                 <button class="button" type="submit" id="search-button">Search</button>
+                <button class="button" type="submit" id="favorites-button">Favorites</button>
+            </div>
+            <div id="google-maps-section">
+
             </div>
         </div>
 
+        <!--modal start-->
 
-        <div id="google-maps-section">
+
+
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Favorites</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <!--dropdown menu-->
+                    <div class="dropdown">
+                        <div class="dropdown-trigger">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                <span>Favorites List</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Populate</button>
+                    <button class="button" id="cancel">Cancel</button>
+                </footer>
+            </div>
+        </div>
+
+        <!--modal end-->
+
+        
 
         </div>
         <div id="results-section">
             <ul id="results-list">
-                
+
             </ul>
 
         </div>
@@ -89,11 +132,12 @@
     <br>
 
     <footer>
-        <p>© 2021 Lester Calderon, Baron Cannon, Liliana Cortes, Kat Dixon, and Conor Welsh</p>
+        <p class="has-text-white"> © 2021 Lester Calderon, Baron Cannon, Liliana Cortes, Kat Dixon, and Conor Welsh</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&libraries=&v=weekly&callback=initMap" async></script>
     <script src="./assets/js/script.js"></script>
 </body>
 

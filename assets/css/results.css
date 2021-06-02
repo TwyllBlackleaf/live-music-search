@@ -28,7 +28,7 @@ h1,p {
 }
 
 a {
-  color: rgb(255, 255, 255);
+  color: var(--tertiary);
 
 }
 
@@ -76,4 +76,10 @@ header {
   float: right;
   height: 30rem;
   width: 30rem;
+}
+
+footer {
+  margin-top: 200px;
+  color: var(--tertiary);
+  text-align: center;
 }
