@@ -109,11 +109,11 @@ var getSearchTerm = function(event) {
         } else if (searchTerm.byLocation) {
             searchByLocation();
         } else {
-            // insert error modal here
+            document.getElementById('error').innerHTML="error, please choose band or location";
             console.log("error, please choose band or location");
         }
     } else {
-        // insert error modal here
+        document.getElementById('error').innerHTML="error, please enter a search term";
         console.log("error, please enter a search term");
     }
 
