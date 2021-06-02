@@ -37,8 +37,8 @@ function initMap() {
 
     if (searchTerm.byBand) {
         // If searching by band, center the map on the location of the first event's venue
-        mapCenter.lat = parseInt(searchTerm.firstLat); 
-        mapCenter.lng = parseInt(searchTerm.firstLong);
+        mapCenter.lat = parseFloat(searchTerm.firstLat); 
+        mapCenter.lng = parseFloat(searchTerm.firstLong);
     } else if (searchTerm.byLocation) {
         // If searching by location, set the center of the map to the searched location
         mapCenter.lat = searchTerm.lat;
@@ -55,35 +55,14 @@ function initMap() {
 
 }
 
-function addMarkerMap() {
-    const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let labelIndex = 0;
+function addMarkerMap(location, label, map) {
 
-    function initMap() {
-        const bangalore = { lat: 12.97, lng: 77.59 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-         zoom: 12,
-         center: bangalore,
-        });
-
-        // This event listener calls addMarker() when the map is clicked.
-        google.maps.event.addListener(map, "click", (event) => {
-        addMarker(event.latLng, map);
-        });
-        // Add a marker at the center of the map.
-        addMarker(bangalore, map);
-        }
-
-    // Adds a marker to the map.
-    function addMarker(location, map) {
-    // Add the marker at the clicked location, and add the next-available label
-    // from the array of alphabetical characters.
-    new google.maps.Marker({
-        position: location,
-        label: labels[labelIndex++ % labels.length],
-        map: map,
-        });
-    }
+new google.maps.Marker({
+    position: location,
+    label: label,
+    map: map,
+    });
+    
 }
 
 // S3. Search Form Handling
@@ -135,13 +114,31 @@ var searchByLocation = function() {
             .then(function(response) {
                 console.log(response._embedded.events);
                 var eventsArray = response._embedded.events;
+                var map1 = initMap();
+
                 for (i = 0; i < eventsArray.length; i++) {
                     for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventsArray[i]._embedded.venues[j].name}</a></li>`).appendTo(resultsListEl);
+                        var eventLocation = eventsArray[i]._embedded.venues[j].name
+
+                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventLocation}</a></li>`).appendTo(resultsListEl);
+                        
+                        if (eventsArray[i]._embedded.venues[j].location) {
+                            var markerLatLng = { 
+                                lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
+                                lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                            }
+                            console.log(markerLatLng);
+        
+                            new google.maps.Marker({
+                                position: markerLatLng,
+                                map: map1,
+                                title: eventLocation
+                            })
+                        }
                     }
                 }
 
-                initMap();
+                
             })
     })
 };
@@ -158,13 +155,39 @@ var searchByBand = function() {
             var eventsArray = response._embedded.events;
             searchTerm.firstLat = eventsArray[0]._embedded.venues[0].location.latitude;
             searchTerm.firstLong = eventsArray[0]._embedded.venues[0].location.longitude;
+
+            var map1 = initMap();
+            
+
             for (i = 0; i < eventsArray.length; i++) {
                 for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                    $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventsArray[i]._embedded.venues[j].name}</a></li>`).appendTo(resultsListEl);
+                    var eventLocation = eventsArray[i]._embedded.venues[j].name
+                    $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventLocation}</a></li>`).appendTo(resultsListEl);
+                    
+                    console.log(eventsArray[i]._embedded.venues[j].location);
+
+                    if (eventsArray[i]._embedded.venues[j].location) {
+                        var markerLatLng = { 
+                            lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
+                            lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                        }
+                        console.log(markerLatLng);
+    
+                        new google.maps.Marker({
+                            position: markerLatLng,
+                            map: map1,
+                            title: eventLocation
+                        })
+                    }
+                     
+
+                    
+
                 }
             }
 
-            initMap();
+
+            
         })    
 };
 
