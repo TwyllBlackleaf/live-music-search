@@ -23,10 +23,6 @@ body {
   padding: 0;
 }
 
-h1 {
-  color: var(--tertiary);
-}
-
 a {
   color: var(--tertiary);
 
