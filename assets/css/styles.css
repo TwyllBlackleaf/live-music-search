@@ -84,4 +84,13 @@ footer {
     color: var(--tertiary);
     text-align: center;
 }
- 
+
+.modal-card footer {
+    margin-top: 0px;
+}
+
+.modal-card-body {
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+}
