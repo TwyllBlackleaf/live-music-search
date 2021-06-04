@@ -22,9 +22,10 @@ let results = []
 
 if (localStorage.getItem(FAVORITES_STORAGE_KEY)) {
     results = JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY))
-    console.log(results);
+    console.log(results, "results");
 } 
 
+favoritesSearch();
 
 var resultsListEl = $("#results-list");
 
@@ -78,7 +79,7 @@ var getSearchTerm = function(event) {
     console.log(searchTerm);
 
     results.push(searchTerm.text)
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(results));
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(_.uniq(results)));
     favoritesSearch();
 
     
@@ -263,6 +264,9 @@ $(".button.is-success").click((e) => {
     $(".modal").removeClass("is-active")
     $(".input#search").val(selected)
 });
+
+
+
 
 };
 
