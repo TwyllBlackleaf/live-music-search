@@ -23,9 +23,7 @@ body {
   padding: 0;
 }
 
-h1,p {
-  color: rgb(255, 255, 255);
-}
+
 
 a {
   color: var(--tertiary);
@@ -60,7 +58,10 @@ header {
   border-radius: 5px;
 }
 
-
+.band-info {
+  height: max-content;
+  width: max-content;
+}
 
 .venue {
   color: var(--tertiary);

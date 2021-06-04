@@ -56,7 +56,7 @@ body {
     background-color: var(--secondary);
 }
 
-.block:not(:last-child) {
+.block {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     background-color: var(--primary);
