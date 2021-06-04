@@ -87,9 +87,10 @@ var getSearchTerm = function(event) {
             searchByBand();
         } else if (searchTerm.byLocation) {
             searchByLocation();
-        } else {
+        } else { //change modal styling to include okay button & appear after pressing search with no other key word attached 
             document.getElementById('error').innerHTML="error, please choose band or location";
             console.log("error, please choose band or location");
+            //added more comments to modal error message 
         }
     } else {
         document.getElementById('error').innerHTML="error, please enter a search term";
