@@ -35,31 +35,30 @@ var getTicketmasterInfo = function() {
 
             showTimes.appendChild(showTimesMarkup);
 
-            
 
-            
-
-
-
-              let getLocation = response. _embedded.venues.location;
-              console.log(getLocation);
-              const map = new google.maps.Map(document.getElementById("map"), {
-                center: getLocation,
+              let getLatitude = response._embedded.venues[0].location.latitude;
+              let getLongitude = response._embedded.venues[0].location.longitude;
+              
+              
+                map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: +getLatitude, lng: +getLongitude},
                 zoom: 20,
-              });
-              const panorama = new google.maps.StreetViewPanorama(
-                document.getElementById("pano"),
+                
+               });
+             const panorama = new google.maps.StreetViewPanorama(
+               document.getElementById("pano"),
                 {
-                  position: getLocation,
-                  pov: {
+                  position: {lat: +getLatitude, lng: +getLongitude},
+                   pov: {
                     heading: 18,
-                    pitch: 10,
+                   pitch: 10,
                   },
                 }
               );
               map.setStreetView(panorama);
-            
-
+              
+              
+    
             
         })
 }
