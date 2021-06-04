@@ -79,7 +79,7 @@ var getSearchTerm = function(event) {
     console.log(searchTerm);
 
     results.push(searchTerm.text)
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(_.uniq(results)));
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(results));
     favoritesSearch();
 
     
