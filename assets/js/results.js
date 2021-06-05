@@ -32,7 +32,6 @@ var getTicketmasterInfo = function() {
             let showTimesMarkup = document.createElement("p");
             showTimesMarkup.className = "showTimesMarkupAdj";
 
-    
 
             showTimesMarkup.textContent += localDate + localTime;
 
