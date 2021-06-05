@@ -19,6 +19,7 @@ var getTicketmasterInfo = function() {
 
             let imgUrl = response.images[0].url;
             img = document.createElement("img");
+            img.className = "imgResize";
             img.src = imgUrl;
             let bandInfo = document.getElementsByClassName("bandInfo")[0];
             bandInfo.appendChild(img)
@@ -26,10 +27,11 @@ var getTicketmasterInfo = function() {
      
 
             let showTimes = document.getElementsByClassName("show-times")[0];
+            showTimes.className = "showTimesAdj";
 
             let showTimesMarkup = document.createElement("p");
+            showTimesMarkup.className = "showTimesMarkupAdj";
 
-    
 
             showTimesMarkup.textContent += localDate + localTime;
 
