@@ -72,6 +72,8 @@ header {
   color: var(--tertiary);
 }
 
+
+
 #map,
 #pano {
   float: right;
