@@ -14,58 +14,57 @@
     <!--add header, Jumbotron, and navbar-->
     <header>
         <div class="jumbotron-container">
-            <h1 class="has-text-white is-size-2-desktop is-size-2-tablet is-size-4-mobile">Live Music Search</h1>      
-        </div> 
-        </header>
-    
- <section class="hero"></section>
+            <h1 class="has-text-white is-size-2-desktop is-size-2-tablet is-size-4-mobile">Live Music Search</h1>
+        </div>
+    </header>
 
-            <nav class="navbar is-size-3-desktop is-size-3-tablet is-size-5-mobile">
-                <p>
-                    <a class="link is-info" href="./index.html">Home</a>
-                </p>
-                
-                <p>
-                    <a class="link is-info" href="./about.html">About</a>
-                </p>
+    <section class="hero"></section>
 
-                <p>
-                    <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
-                </p>
-            </nav>
+    <nav class=" columns navbar is-size-3-desktop is-size-3-tablet is-size-5-mobile">
+        <p>
+            <a class="link is-info" href="./index.html">Home</a>
+        </p>
+
+        <p>
+            <a class="link is-info" href="./about.html">About</a>
+        </p>
+
+        <p>
+            <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
+        </p>
+    </nav>
 
     <!--add div for band info containers and maps-->
-
-    <div class="container">
-        <div class="box">
-            <div class="level-left">
-                <div class="bandInfo">
-                    <h1 class="has-text-white is-size-1">band details</h1>
+    <div class="columns">
+        <div class="column is-one-third">
+            <div class="box" style="width: 300px;">
+                <div class="level-left">
+                    <div class="bandInfo">
+                        <h1 class="has-text-white is-size-1">band details</h1>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container">
-        <div class="box">
-            <div class="level-left">
-                <div class="show-times">
-                    <h1 class="has-text-white is-size-1">show-times</h1>
+        <div class="column is-one-third">
+            <div class="box" style="width: 300px;">
+                <div class="level-left">
+                    <div class="show-times">
+                        <h1 class="has-text-white is-size-1">show-times</h1>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="level-right">
-            <div class="venue">
-                <h1 class="has-text-white">Venue</h1>
-                <div id="map"></div>
-                <div id="pano"></div>
-                
-            </div>
+
+        <div class="venue column is-one-third">
+            <h1 class="has-text-white">Venue</h1>
+
+            <div id="map"></div>
+            <div id="pano"></div>
         </div>
     </div>
+    
+
 
 
 
@@ -77,7 +76,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback"></script> 
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&callback">
+    </script>
     <script src="assets/js/results.js"></script>
 </body>
 
