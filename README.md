@@ -22,6 +22,7 @@ An app for searching Ticketmaster events for live music performances
 - [Bulma](https://bulma.io/)
 - [jQuery](https://jquery.com/)
 - [Moment](https://momentjs.com/)
+- [Lodash](https://lodash.com/)
 
 ## Contributors 
 
