@@ -209,9 +209,19 @@ var searchByLocation = function() {
 };
 
 var searchByBand = function() {
-    console.log("searching by band");
+    var bandSearchUrl = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchTerm.text + "&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9";
 
-    fetch("https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchTerm.text + "&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9")
+    if (searchTerm.startDate) {
+        var startDateMoment = moment(searchTerm.startDate)._i;
+        bandSearchUrl += "&startDateTime=" + startDateMoment + "T00:00:00Z";
+    }
+
+    if (searchTerm.endDate) {
+        var endDateMoment = moment(searchTerm.endDate)._i;
+        bandSearchUrl += "&endDateTime=" + endDateMoment + "T23:59:59Z";
+    }
+
+    fetch(bandSearchUrl)
         .then(function(response) {
             return response.json();
         })
@@ -229,9 +239,15 @@ var searchByBand = function() {
             for (i = 0; i < eventsArray.length; i++) {
                 for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
                     var eventLocation = eventsArray[i]._embedded.venues[j].name
-                    $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventLocation}</a></li>`).appendTo(resultsListEl);
-                    
-                    console.log(eventsArray[i]._embedded.venues[j].location);
+
+                    if (eventsArray[i].dates.initialStartDate) {
+                        var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
+                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                             at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
+                    } else {
+                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                             at ${eventLocation}</a></li>`).appendTo(resultsListEl);
+                    }
 
                     if (eventsArray[i]._embedded.venues[j].location) {
                         var markerLatLng = { 
