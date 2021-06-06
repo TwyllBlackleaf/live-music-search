@@ -92,16 +92,16 @@ var getSearchTerm = function(event) {
             searchByBand();
         } else if (searchTerm.byLocation) {
             searchByLocation();
-        } else { 
+        } else {
         //Band/Local Modal
             var blModal = document.getElementById("b/lMod");
             var blBtn = document.getElementById("search-button");
         // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close1")[0];
         // When the user clicks on the button, open the modal
-            blBtn.onclick = function() {
+
             blModal.style.display = "block";
-            }
+            
         // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
              blModal.style.display = "none";
