@@ -56,7 +56,6 @@ function initMap() {
     });
 
     return map;
-
 }
 
 function addMarkerMap(location, label, map) {
