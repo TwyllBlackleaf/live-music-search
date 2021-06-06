@@ -95,21 +95,3 @@ footer {
   text-align: center;
 }
 
-@media screen and (max-width: 1600px){
-    
-}
-
-/*Tablets [601px -> 1200px]*/
-@media screen and (max-width: 1200px){
-    
-}
-	/*Big smartphones [426px -> 600px]*/
-
-@media screen and (max-width: 600px){
-
-}
-	/*Small smartphones [325px -> 425px]*/
-
-@media screen and (max-width: 425px){
-
-}
