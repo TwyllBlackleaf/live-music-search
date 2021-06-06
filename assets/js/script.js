@@ -12,7 +12,10 @@ var searchTerm = {
     lat: 0,
     long: 0,
     firstLat: 0,
-    firstLong: 0
+    firstLong: 0,
+    startDate: 0,
+    endDate: 0,
+    genre: ""
 };
 
 //favorites from local storage
@@ -53,7 +56,6 @@ function initMap() {
     });
 
     return map;
-
 }
 
 function addMarkerMap(location, label, map) {
@@ -75,32 +77,62 @@ var getSearchTerm = function(event) {
     searchTerm.text = $("#search").val();
     searchTerm.byBand = $("#by-band").prop("checked");
     searchTerm.byLocation = $("#by-location").prop("checked");
+    searchTerm.startDate = $("#start-date").val();
+    searchTerm.endDate = $("#end-date").val();
 
     console.log(searchTerm);
 
     results.push(searchTerm.text)
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(_.uniq(results)));
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(results));
     favoritesSearch();
 
-    
+    //Error Modal js
+    var blModal = document.getElementById("b/lMod");
+    var blBtn = document.getElementById("search-button");
+    var modal = document.getElementById("eSearch");
+    var btn = document.getElementById("search-button");
+    // Get the <span> element that closes the modal
+    var span1 = document.getElementsByClassName("close1")[0];
+    var span = document.getElementsByClassName("close")[0];
     if (searchTerm.text) {
         if (searchTerm.byBand) {
             searchByBand();
         } else if (searchTerm.byLocation) {
             searchByLocation();
         } else {
-            document.getElementById('error').innerHTML="error, please choose band or location";
+        // When the user clicks on the button, open the modal
+            blModal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+            span1.onclick = function() {
+             blModal.style.display = "none";
+            }
+        // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == blModal) {
+                    blModal.style.display = "none";
+                }
+            }
             console.log("error, please choose band or location");
         }
     } else {
-        document.getElementById('error').innerHTML="error, please enter a search term";
+        // When the user clicks on the button, open the modal
+            modal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+        // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
         console.log("error, please enter a search term");
     }
 
 };
 
 var searchByLocation = function() {
-    console.log("searching by location");
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({"address": searchTerm.text}, function(results) {
@@ -108,7 +140,24 @@ var searchByLocation = function() {
         searchTerm.long = results[0].geometry.location.lng();
         console.log(searchTerm);
 
-        fetch(`https://app.ticketmaster.com/discovery/v2/events.json?latlong=${searchTerm.lat},${searchTerm.long}&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9&radius=25&classificationName=music`)
+        var locationSearchUrl = `https://app.ticketmaster.com/discovery/v2/events.json?latlong=${searchTerm.lat},${searchTerm.long}&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9&radius=25&classificationName=music`
+
+        if (searchTerm.startDate) {
+            var startDateMoment = moment(searchTerm.startDate)._i;
+            locationSearchUrl += "&startDateTime=" + startDateMoment + "T00:00:00Z";
+        }
+
+        if (searchTerm.endDate) {
+            var endDateMoment = moment(searchTerm.endDate)._i;
+            locationSearchUrl += "&endDateTime=" + endDateMoment + "T23:59:59Z";
+        }
+
+        if ($("#genre").val()) {
+            var genreId = $("#genre").val();
+            locationSearchUrl += "&genreId=" + genreId;
+        }
+
+        fetch(locationSearchUrl)
             .then(function(response) {
                 return(response.json());
             })
@@ -120,39 +169,58 @@ var searchByLocation = function() {
                 var bounds = new google.maps.LatLngBounds();
 
                 for (i = 0; i < eventsArray.length; i++) {
-                    for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                        var eventLocation = eventsArray[i]._embedded.venues[j].name
-
-                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventLocation}</a></li>`).appendTo(resultsListEl);
-                        
-                        if (eventsArray[i]._embedded.venues[j].location) {
-                            var markerLatLng = { 
-                                lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
-                                lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                    if (eventsArray[i]._embedded) {
+                        for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
+                            var eventLocation = eventsArray[i]._embedded.venues[j].name;
+    
+                            if (eventsArray[i].dates.initialStartDate) {
+                                var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
+                                $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                     at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
+                            } else {
+                                $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                     at ${eventLocation}</a></li>`).appendTo(resultsListEl);
                             }
-        
-                            new google.maps.Marker({
-                                position: markerLatLng,
-                                map: map1,
-                                title: eventLocation
-                            })
-
-                            bounds.extend(markerLatLng);
+                            
+                            if (eventsArray[i]._embedded.venues[j].location) {
+                                var markerLatLng = { 
+                                    lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
+                                    lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                                }
+            
+                                new google.maps.Marker({
+                                    position: markerLatLng,
+                                    map: map1,
+                                    title: eventLocation
+                                })
+    
+                                bounds.extend(markerLatLng);
+                            }
                         }
+
                     }
+                    
                 }
 
                 map1.fitBounds(bounds); 
-
-                
             })
     })
 };
 
 var searchByBand = function() {
-    console.log("searching by band");
+    var bandSearchUrl = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchTerm.text + "&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9";
 
-    fetch("https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + searchTerm.text + "&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9")
+    if (searchTerm.startDate) {
+        var startDateMoment = moment(searchTerm.startDate)._i;
+        bandSearchUrl += "&startDateTime=" + startDateMoment + "T00:00:00Z";
+    }
+
+    if (searchTerm.endDate) {
+        var endDateMoment = moment(searchTerm.endDate)._i;
+        bandSearchUrl += "&endDateTime=" + endDateMoment + "T23:59:59Z";
+    }
+
+    fetch(bandSearchUrl)
         .then(function(response) {
             return response.json();
         })
@@ -168,27 +236,36 @@ var searchByBand = function() {
             
 
             for (i = 0; i < eventsArray.length; i++) {
-                for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                    var eventLocation = eventsArray[i]._embedded.venues[j].name
-                    $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventLocation}</a></li>`).appendTo(resultsListEl);
-                    
-                    console.log(eventsArray[i]._embedded.venues[j].location);
-
-                    if (eventsArray[i]._embedded.venues[j].location) {
-                        var markerLatLng = { 
-                            lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
-                            lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                if (eventsArray[i]._embedded) {
+                    for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
+                        var eventLocation = eventsArray[i]._embedded.venues[j].name
+    
+                        if (eventsArray[i].dates.initialStartDate) {
+                            var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
+                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                 at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
+                        } else {
+                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                 at ${eventLocation}</a></li>`).appendTo(resultsListEl);
                         }
     
-                        new google.maps.Marker({
-                            position: markerLatLng,
-                            map: map1,
-                            title: eventLocation
-                        })
-
-                        bounds.extend(markerLatLng);
+                        if (eventsArray[i]._embedded.venues[j].location) {
+                            var markerLatLng = { 
+                                lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
+                                lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                            }
+        
+                            new google.maps.Marker({
+                                position: markerLatLng,
+                                map: map1,
+                                title: eventLocation
+                            })
+    
+                            bounds.extend(markerLatLng);
+                        }
                     }
                 }
+                
             }
 
             map1.fitBounds(bounds); 
@@ -263,10 +340,6 @@ $(".button.is-success").click((e) => {
     $(".modal").removeClass("is-active")
     $(".input#search").val(selected)
 });
-
-
-
-
 };
 
 

@@ -5,9 +5,6 @@
   --light-grey: rgb(117, 114, 114);
   --black: rgb(0, 0, 0);
 }
-html {
-  background-color: var(--secondary);
-}
 
 .hero {
   height: 400px;
@@ -17,15 +14,29 @@ html {
   background-position: center;
 }
 
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+header {
+  background-color: var(--primary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: x-large;
 }
 
-h1,p {
-  color: rgb(255, 255, 255);
+.navbar {
+  background-color: var(--light-grey);
+  color: var(--tertiary);
+  text-align: center;
+  font-size: xx-large;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
 }
+
+body {
+  background-color: var(--secondary);
+}
+
+
 
 a {
   color: var(--tertiary);
@@ -40,12 +51,7 @@ a {
   flex-direction: column;
   justify-content: flex-end;
 }
-header {
-  background-color: var(--primary);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  text-align: center;
-  font-size: x-large;
-}
+
 
 .box {
   position: relative;
@@ -60,7 +66,10 @@ header {
   border-radius: 5px;
 }
 
-
+.band-info {
+  height: 100%;
+  width: 100%;
+}
 
 .venue {
   color: var(--tertiary);
@@ -70,6 +79,8 @@ header {
 .show-times {
   color: var(--tertiary);
 }
+
+
 
 #map,
 #pano {
@@ -83,3 +94,4 @@ footer {
   color: var(--tertiary);
   text-align: center;
 }
+

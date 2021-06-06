@@ -21,7 +21,16 @@ header {
     font-size: x-large;
 }
 
-
+.navbar {
+    background-color: var(--light-grey);
+    color: var(--tertiary);
+    text-align: center;
+    font-size: xx-large;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
 
 .level {
     background-color: var(--light-grey);
@@ -52,11 +61,15 @@ a {
     color: var(--tertiary);
 }
 
+#by-location {
+    margin-left: -.6em;
+}
+
 body {
     background-color: var(--secondary);
 }
 
-.block:not(:last-child) {
+.block {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     background-color: var(--primary);
@@ -74,9 +87,9 @@ body {
 }
 
 #google-maps-section {
-    height: 500px;
-    width: 800px;
-    margin-left: 600px;
+    float: right;
+    height: 25rem;
+    width: 50rem;
 }
 
 footer {
@@ -94,3 +107,54 @@ footer {
     justify-content: center;
     padding: 100px;
 }
+
+/*  Error Msg Modal Style    */
+.modal is-active {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* Empty Search Modal Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Band/Local Modal Close Button */
+  .close1 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close1:hover,
+  .close1:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

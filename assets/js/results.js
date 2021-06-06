@@ -19,6 +19,7 @@ var getTicketmasterInfo = function() {
 
             let imgUrl = response.images[0].url;
             img = document.createElement("img");
+            img.className = "imgResize";
             img.src = imgUrl;
             let bandInfo = document.getElementsByClassName("bandInfo")[0];
             bandInfo.appendChild(img)
@@ -26,40 +27,40 @@ var getTicketmasterInfo = function() {
      
 
             let showTimes = document.getElementsByClassName("show-times")[0];
+            showTimes.className = "showTimesAdj";
 
             let showTimesMarkup = document.createElement("p");
+            showTimesMarkup.className = "showTimesMarkupAdj";
 
-    
 
             showTimesMarkup.textContent += localDate + localTime;
 
             showTimes.appendChild(showTimesMarkup);
 
-            
 
-            
-
-
-
-              let getLocation = response. _embedded.venues.location;
-              console.log(getLocation);
-              const map = new google.maps.Map(document.getElementById("map"), {
-                center: getLocation,
+              let getLatitude = response._embedded.venues[0].location.latitude;
+              let getLongitude = response._embedded.venues[0].location.longitude;
+              
+              
+                map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: +getLatitude, lng: +getLongitude},
                 zoom: 20,
-              });
-              const panorama = new google.maps.StreetViewPanorama(
-                document.getElementById("pano"),
+                
+               });
+             const panorama = new google.maps.StreetViewPanorama(
+               document.getElementById("pano"),
                 {
-                  position: getLocation,
-                  pov: {
+                  position: {lat: +getLatitude, lng: +getLongitude},
+                   pov: {
                     heading: 18,
-                    pitch: 10,
+                   pitch: 10,
                   },
                 }
               );
               map.setStreetView(panorama);
-            
-
+              
+              
+    
             
         })
 }

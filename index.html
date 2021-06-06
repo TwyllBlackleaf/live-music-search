@@ -13,24 +13,25 @@
 <body>
     <header>
         <div class="jumbotron-container">
-            <h1 class="has-text-white">Live Music Search</h1>
-            <section class="hero"></section>
-
-            <nav class="level">
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href="./index.html">Home</a>
-                </p>
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href="./about.html">About</a>
-                </p>
-
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
-                </p>
-            </nav>
+            <h1 class="has-text-white is-size-2-desktop is-size-2-tablet is-size-4-mobile">Live Music Search</h1>
         </div>
     </header>
-    <br>
+
+    <section class="hero"></section>
+
+    <nav class="navbar is-size-3-desktop is-size-3-tablet is-size-5-mobile">
+        <p>
+            <a class="link is-info" href="./index.html">Home</a>
+        </p>
+
+        <p>
+            <a class="link is-info" href="./about.html">About</a>
+        </p>
+
+        <p>
+            <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
+        </p>
+    </nav>
 
     <main>
         <div class="card-header">
@@ -57,7 +58,27 @@
                 <div class="field">
                     <label class="label" for="genre">Narrow Results by Genre</label>
                     <div class="control">
-                        <input class="input" type="text" id="genre" placeholder="Genre Name" />
+                        <select name="genre" id="genre">
+                            <option value="">Choose a Genre</option>
+                            <option value="KnvZfZ7vAvv">Alternative</option>
+                            <option value="KnvZfZ7vAvd">Blues</option>
+                            <option value="KnvZfZ7v7nJ">Classical</option>
+                            <option value="KnvZfZ7vAv6">Country</option>
+                            <option value="KnvZfZ7vAvF">Dance/Electronic</option>
+                            <option value="KnvZfZ7vAva">Folk</option>
+                            <option value="KnvZfZ7vAv1">Hip-Hop/Rap</option>
+                            <option value="KnvZfZ7vAvE">Jazz</option>
+                            <option value="KnvZfZ7vAJ6">Latin</option>
+                            <option value="KnvZfZ7vAvt">Metal</option>
+                            <option value="KnvZfZ7vAvn">New Age</option>
+                            <option value="KnvZfZ7vAe6">Other/Undefined</option>
+                            <option value="KnvZfZ7vAev">Pop</option>
+                            <option value="KnvZfZ7vAee">R&B</option>
+                            <option value="KnvZfZ7vAed">Reggae</option>
+                            <option value="KnvZfZ7vAe7">Religious</option>
+                            <option value="KnvZfZ7vAeA">Rock</option>
+                            <option value="KnvZfZ7vAeF">World</option>
+                        </select>
                     </div>
                 </div>
                 <div class="field">
@@ -74,19 +95,30 @@
                 <button class="button" type="submit" id="search-button">Search</button>
                 <button class="button" type="submit" id="favorites-button">History</button>
             </div>
-            <div id="google-maps-section">
+            <div class="container">
+                <div class="level-right">
+                    <div id="google-maps-section">
 
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!--Error Messages-->
-        <div id="error" class="modal">
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Error 101</p>
-                    <button class="delete" aria-label="close"></button>
-                </header>
-            </div>
+    <!--configure to trigger from Search button & loop through conditional-->
+    <!-- Band/Location Modal Content-->
+        <div id="b/lMod" class="modal is-clipped">
+        <div class="modal-content">
+             <span class="close1">&times;</span>
+             <p>Error Message <br>Please choose Search by Band or Search by Location to get started.</p>
+        </div>
+        </div>
+
+     <!-- Empty Search Term Modal Content-->
+     <div id="eSearch" class="modal is-clipped">
+        <div class="modal-content">
+             <span class="close">&times;</span>
+             <p>Error Message <br>Please enter a search term to get started.</p>
+
         </div>
 
         <!--modal start-->
@@ -125,7 +157,7 @@
 
         <!--modal end-->
 
-        
+
 
         </div>
         <div id="results-section">
@@ -135,11 +167,9 @@
 
         </div>
     </main>
-    <br>
-    <br>
-
     <footer>
         <p class="has-text-white"> © 2021 Lester Calderon, Baron Cannon, Liliana Cortes, Kat Dixon, and Conor Welsh</p>
+        <br>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
