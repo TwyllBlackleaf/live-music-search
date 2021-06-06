@@ -42,15 +42,15 @@ a {
 
 }
 
-.card-header {
+.card-header.column{
     background-color: var(--primary);
-    
 }
 
 #search-form-section {
     color: var(--tertiary);
     padding-left: 5px;
     padding-bottom: 15px;
+    
 }
 
 .label {
@@ -67,6 +67,7 @@ a {
 
 body {
     background-color: var(--secondary);
+    
 }
 
 .block {
@@ -85,17 +86,23 @@ body {
     display: block;
     margin: auto;
 }
+.column {
+    background-color: var(--primary);
+}
 
-#google-maps-section {
-    float: right;
+#google-maps-section{
+    float: left;
     height: 25rem;
     width: 50rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 footer {
     margin-top: 200px;
     color: var(--tertiary);
     text-align: center;
+    display: block;
 }
 
 .modal-card footer {
@@ -158,3 +165,98 @@ footer {
     text-decoration: none;
     cursor: pointer;
   }
+.column.is-full {
+margin-top: 10px;
+background-color: var(--secondary);
+}
+
+  #results-list {
+      background-color: var(--secondary);
+      color: var(--tertiary);
+      
+  }
+
+  @media screen and (max-width: 1440px) {
+    #google-maps-section {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    body {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+  #google-maps-section {
+      max-width: 100%;
+      max-height: 100%;
+  }
+  body {
+      max-width: 100%;
+      max-height: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #google-maps-section {
+      max-width: 100%;
+      max-height: 100%;
+  }
+  body {
+      max-width: 100%;
+      max-height: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #google-maps-section {
+      max-width: 100%;
+      max-height: 100%;
+  }
+
+  body {
+      width: 100%;
+      height: 100%;
+  }
+
+  footer {
+      display: block;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #google-maps-section {
+      max-width: 100%;
+      max-height: 100%;
+  }
+
+  body {
+      width: 100%;
+      height: 100%;
+  }
+
+  footer {
+    margin-top: 200px;
+    color: var(--tertiary);
+    text-align: center;
+}
+}
+
+@media screen and (max-width: 320px) {
+  #google-maps-section {
+      max-width: 100%;
+      max-height: 100%;
+  }
+
+  body {
+      width: 100%;
+      height: 100%;
+  }
+
+  footer {
+    margin-top: 200px;
+    color: var(--tertiary);
+    text-align: center;
+}
+}
