@@ -160,6 +160,11 @@ var searchByLocation = function() {
             locationSearchUrl += "&endDateTime=" + endDateMoment + "T23:59:59Z";
         }
 
+        if ($("#genre").val()) {
+            var genreId = $("#genre").val();
+            locationSearchUrl += "&genreId=" + genreId;
+        }
+
         fetch(locationSearchUrl)
             .then(function(response) {
                 return(response.json());
@@ -172,38 +177,40 @@ var searchByLocation = function() {
                 var bounds = new google.maps.LatLngBounds();
 
                 for (i = 0; i < eventsArray.length; i++) {
-                    for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                        var eventLocation = eventsArray[i]._embedded.venues[j].name;
-
-                        if (eventsArray[i].dates.initialStartDate) {
-                            var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
-                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
-                                 at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
-                        } else {
-                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
-                                 at ${eventLocation}</a></li>`).appendTo(resultsListEl);
-                        }
-                        
-                        if (eventsArray[i]._embedded.venues[j].location) {
-                            var markerLatLng = { 
-                                lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
-                                lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                    if (eventsArray[i]._embedded) {
+                        for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
+                            var eventLocation = eventsArray[i]._embedded.venues[j].name;
+    
+                            if (eventsArray[i].dates.initialStartDate) {
+                                var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
+                                $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                     at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
+                            } else {
+                                $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                     at ${eventLocation}</a></li>`).appendTo(resultsListEl);
                             }
-        
-                            new google.maps.Marker({
-                                position: markerLatLng,
-                                map: map1,
-                                title: eventLocation
-                            })
-
-                            bounds.extend(markerLatLng);
+                            
+                            if (eventsArray[i]._embedded.venues[j].location) {
+                                var markerLatLng = { 
+                                    lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
+                                    lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                                }
+            
+                                new google.maps.Marker({
+                                    position: markerLatLng,
+                                    map: map1,
+                                    title: eventLocation
+                                })
+    
+                                bounds.extend(markerLatLng);
+                            }
                         }
+
                     }
+                    
                 }
 
                 map1.fitBounds(bounds); 
-
-                
             })
     })
 };
@@ -237,33 +244,36 @@ var searchByBand = function() {
             
 
             for (i = 0; i < eventsArray.length; i++) {
-                for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                    var eventLocation = eventsArray[i]._embedded.venues[j].name
-
-                    if (eventsArray[i].dates.initialStartDate) {
-                        var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
-                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
-                             at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
-                    } else {
-                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
-                             at ${eventLocation}</a></li>`).appendTo(resultsListEl);
-                    }
-
-                    if (eventsArray[i]._embedded.venues[j].location) {
-                        var markerLatLng = { 
-                            lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
-                            lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                if (eventsArray[i]._embedded) {
+                    for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
+                        var eventLocation = eventsArray[i]._embedded.venues[j].name
+    
+                        if (eventsArray[i].dates.initialStartDate) {
+                            var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
+                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                 at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
+                        } else {
+                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                 at ${eventLocation}</a></li>`).appendTo(resultsListEl);
                         }
     
-                        new google.maps.Marker({
-                            position: markerLatLng,
-                            map: map1,
-                            title: eventLocation
-                        })
-
-                        bounds.extend(markerLatLng);
+                        if (eventsArray[i]._embedded.venues[j].location) {
+                            var markerLatLng = { 
+                                lat: parseFloat(eventsArray[i]._embedded.venues[j].location.latitude),
+                                lng: parseFloat(eventsArray[i]._embedded.venues[j].location.longitude)
+                            }
+        
+                            new google.maps.Marker({
+                                position: markerLatLng,
+                                map: map1,
+                                title: eventLocation
+                            })
+    
+                            bounds.extend(markerLatLng);
+                        }
                     }
                 }
+                
             }
 
             map1.fitBounds(bounds); 
