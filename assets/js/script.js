@@ -102,9 +102,7 @@ var getSearchTerm = function(event) {
             searchByLocation();
         } else {
         // When the user clicks on the button, open the modal
-            blBtn.onclick = function() {
             blModal.style.display = "block";
-            }
         // When the user clicks on <span> (x), close the modal
             span1.onclick = function() {
              blModal.style.display = "none";
@@ -119,9 +117,7 @@ var getSearchTerm = function(event) {
         }
     } else {
         // When the user clicks on the button, open the modal
-            btn.onclick = function() {
             modal.style.display = "block";
-            }
         // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
             modal.style.display = "none";
