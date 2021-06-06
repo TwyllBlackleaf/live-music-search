@@ -109,7 +109,7 @@ footer {
 }
 
 /*  Error Msg Modal Style    */
-.modal {
+.modal is-active {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
