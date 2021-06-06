@@ -5,9 +5,7 @@
     --light-grey: rgb(117, 114, 114);
     --black: rgb(0, 0, 0);
   }
-  html {
-    background-color: var(--secondary);
-  }
+  
 
   header {
     background-color: var(--primary);
@@ -25,10 +23,19 @@
   }
   
   body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    background-color: var(--secondary);
   }
+
+  .navbar {
+    background-color: var(--light-grey);
+    color: var(--tertiary);
+    text-align: center;
+    font-size: xx-large;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
     
   a {
     color: var(--tertiary);

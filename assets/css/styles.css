@@ -21,7 +21,16 @@ header {
     font-size: x-large;
 }
 
-
+.navbar {
+    background-color: var(--light-grey);
+    color: var(--tertiary);
+    text-align: center;
+    font-size: xx-large;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
 
 .level {
     background-color: var(--light-grey);
@@ -50,6 +59,10 @@ a {
 
 .radio {
     color: var(--tertiary);
+}
+
+#by-location {
+    margin-left: -.6em;
 }
 
 body {

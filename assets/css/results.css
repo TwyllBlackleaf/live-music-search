@@ -5,9 +5,6 @@
   --light-grey: rgb(117, 114, 114);
   --black: rgb(0, 0, 0);
 }
-html {
-  background-color: var(--secondary);
-}
 
 .hero {
   height: 400px;
@@ -17,10 +14,26 @@ html {
   background-position: center;
 }
 
+header {
+  background-color: var(--primary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: x-large;
+}
+
+.navbar {
+  background-color: var(--light-grey);
+  color: var(--tertiary);
+  text-align: center;
+  font-size: xx-large;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  background-color: var(--secondary);
 }
 
 
@@ -38,12 +51,7 @@ a {
   flex-direction: column;
   justify-content: flex-end;
 }
-header {
-  background-color: var(--primary);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  text-align: center;
-  font-size: x-large;
-}
+
 
 .box {
   position: relative;
@@ -59,8 +67,8 @@ header {
 }
 
 .band-info {
-  height: max-content;
-  width: max-content;
+  height: fit-content;
+  width: fit-content;
 }
 
 .venue {
@@ -71,6 +79,8 @@ header {
 .show-times {
   color: var(--tertiary);
 }
+
+
 
 #map,
 #pano {
@@ -84,3 +94,4 @@ footer {
   color: var(--tertiary);
   text-align: center;
 }
+
