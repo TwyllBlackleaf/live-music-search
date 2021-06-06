@@ -88,17 +88,19 @@ var getSearchTerm = function(event) {
     favoritesSearch();
 
     //Error Modal js
+    var blModal = document.getElementById("b/lMod");
+    var blBtn = document.getElementById("search-button");
+    var modal = document.getElementById("eSearch");
+    var btn = document.getElementById("search-button");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close1")[0];
+    var span = document.getElementsByClassName("close")[0];
     if (searchTerm.text) {
         if (searchTerm.byBand) {
             searchByBand();
         } else if (searchTerm.byLocation) {
             searchByLocation();
-        } else { 
-        //Band/Local Modal
-            var blModal = document.getElementById("b/lMod");
-            var blBtn = document.getElementById("search-button");
-        // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close1")[0];
+        } else {
         // When the user clicks on the button, open the modal
             blBtn.onclick = function() {
             blModal.style.display = "block";
@@ -116,11 +118,6 @@ var getSearchTerm = function(event) {
             console.log("error, please choose band or location");
         }
     } else {
-        // Empty Search Term Modal 
-            var modal = document.getElementById("eSearch");
-            var btn = document.getElementById("search-button");
-        // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
         // When the user clicks on the button, open the modal
             btn.onclick = function() {
             modal.style.display = "block";
