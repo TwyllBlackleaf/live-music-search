@@ -13,26 +13,26 @@
 <body>
     <header>
         <div class="jumbotron-container">
-            <h1 class="has-text-white is-size-2-desktop is-size-2-tablet is-size-4-mobile">Live Music Search</h1>      
-        </div> 
-        </header>
-    
- <section class="hero"></section>
+            <h1 class="has-text-white is-size-2-desktop is-size-2-tablet is-size-4-mobile">Live Music Search</h1>
+        </div>
+    </header>
 
-            <nav class="navbar is-size-3-desktop is-size-3-tablet is-size-5-mobile">
-                <p>
-                    <a class="link is-info" href="./index.html">Home</a>
-                </p>
-                
-                <p>
-                    <a class="link is-info" href="./about.html">About</a>
-                </p>
+    <section class="hero"></section>
 
-                <p>
-                    <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
-                </p>
-            </nav>
-        
+    <nav class="navbar is-size-3-desktop is-size-3-tablet is-size-5-mobile">
+        <p>
+            <a class="link is-info" href="./index.html">Home</a>
+        </p>
+
+        <p>
+            <a class="link is-info" href="./about.html">About</a>
+        </p>
+
+        <p>
+            <a class="link is-info" href="./privacy-policy.html">Privacy Policy</a>
+        </p>
+    </nav>
+
     <main>
         <div class="card-header">
             <div id="search-form-section">
@@ -95,8 +95,12 @@
                 <button class="button" type="submit" id="search-button">Search</button>
                 <button class="button" type="submit" id="favorites-button">History</button>
             </div>
-            <div id="google-maps-section">
+            <div class="container">
+                <div class="level-right">
+                    <div id="google-maps-section">
 
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -114,8 +118,8 @@
         <div class="modal-content">
              <span class="close">&times;</span>
              <p>Error Message <br>Please enter a search term to get started.</p>
+
         </div>
-    </div>    
 
         <!--modal start-->
         <div class="modal">
@@ -153,7 +157,7 @@
 
         <!--modal end-->
 
-        
+
 
         </div>
         <div id="results-section">
@@ -164,12 +168,15 @@
         </div>
     </main>
     <footer>
-        <p class="has-text-white"> © 2021 Lester Calderon, Baron Cannon, Liliana Cortes, Kat Dixon, and Conor Welsh</p><br>
+        <p class="has-text-white"> © 2021 Lester Calderon, Baron Cannon, Liliana Cortes, Kat Dixon, and Conor Welsh</p>
+        <br>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&libraries=&v=weekly&callback=initMap" async></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBXXx5-w_4lZfpsO2ifQOTCjgZ6mpPkD8&libraries=&v=weekly&callback=initMap"
+        async></script>
     <script src="./assets/js/script.js"></script>
 </body>
 

@@ -87,9 +87,9 @@ body {
 }
 
 #google-maps-section {
-    height: 500px;
-    width: 800px;
-    margin-left: 600px;
+    float: right;
+    height: 25rem;
+    width: 50rem;
 }
 
 footer {
