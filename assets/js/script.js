@@ -12,7 +12,10 @@ var searchTerm = {
     lat: 0,
     long: 0,
     firstLat: 0,
-    firstLong: 0
+    firstLong: 0,
+    startDate: 0,
+    endDate: 0,
+    genre: ""
 };
 
 //favorites from local storage
@@ -75,6 +78,8 @@ var getSearchTerm = function(event) {
     searchTerm.text = $("#search").val();
     searchTerm.byBand = $("#by-band").prop("checked");
     searchTerm.byLocation = $("#by-location").prop("checked");
+    searchTerm.startDate = $("#start-date").val();
+    searchTerm.endDate = $("#end-date").val();
 
     console.log(searchTerm);
 
@@ -101,7 +106,6 @@ var getSearchTerm = function(event) {
 };
 
 var searchByLocation = function() {
-    console.log("searching by location");
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({"address": searchTerm.text}, function(results) {
@@ -109,7 +113,19 @@ var searchByLocation = function() {
         searchTerm.long = results[0].geometry.location.lng();
         console.log(searchTerm);
 
-        fetch(`https://app.ticketmaster.com/discovery/v2/events.json?latlong=${searchTerm.lat},${searchTerm.long}&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9&radius=25&classificationName=music`)
+        var locationSearchUrl = `https://app.ticketmaster.com/discovery/v2/events.json?latlong=${searchTerm.lat},${searchTerm.long}&apikey=FzG0HQggXUshU8XPjoL51Vx9xKDyW0r9&radius=25&classificationName=music`
+
+        if (searchTerm.startDate) {
+            var startDateMoment = moment(searchTerm.startDate)._i;
+            locationSearchUrl += "&startDateTime=" + startDateMoment + "T00:00:00Z";
+        }
+
+        if (searchTerm.endDate) {
+            var endDateMoment = moment(searchTerm.endDate)._i;
+            locationSearchUrl += "&endDateTime=" + endDateMoment + "T23:59:59Z";
+        }
+
+        fetch(locationSearchUrl)
             .then(function(response) {
                 return(response.json());
             })
@@ -122,9 +138,16 @@ var searchByLocation = function() {
 
                 for (i = 0; i < eventsArray.length; i++) {
                     for (j = 0; j < eventsArray[i]._embedded.venues.length; j++) {
-                        var eventLocation = eventsArray[i]._embedded.venues[j].name
+                        var eventLocation = eventsArray[i]._embedded.venues[j].name;
 
-                        $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name} at ${eventLocation}</a></li>`).appendTo(resultsListEl);
+                        if (eventsArray[i].dates.initialStartDate) {
+                            var eventStartDate = eventsArray[i].dates.initialStartDate.localDate;
+                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                 at ${eventLocation} starting on ${eventStartDate}</a></li>`).appendTo(resultsListEl);
+                        } else {
+                            $(`<li class="block" id="${eventsArray[i].id}"><a href="./results.html?id=${eventsArray[i].id}">${eventsArray[i].name}
+                                 at ${eventLocation}</a></li>`).appendTo(resultsListEl);
+                        }
                         
                         if (eventsArray[i]._embedded.venues[j].location) {
                             var markerLatLng = { 
