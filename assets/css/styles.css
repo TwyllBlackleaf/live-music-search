@@ -21,7 +21,16 @@ header {
     font-size: x-large;
 }
 
-
+.navbar {
+    background-color: var(--light-grey);
+    color: var(--tertiary);
+    text-align: center;
+    font-size: xx-large;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
 
 .level {
     background-color: var(--light-grey);
@@ -50,6 +59,10 @@ a {
 
 .radio {
     color: var(--tertiary);
+}
+
+#by-location {
+    margin-left: -.6em;
 }
 
 body {
@@ -95,21 +108,3 @@ footer {
     padding: 100px;
 }
 
-@media screen and (max-width: 1600px){
-    
-}
-
-/*Tablets [601px -> 1200px]*/
-@media screen and (max-width: 1200px){
-    
-}
-	/*Big smartphones [426px -> 600px]*/
-
-@media screen and (max-width: 600px){
-
-}
-	/*Small smartphones [325px -> 425px]*/
-
-@media screen and (max-width: 425px){
-
-}
