@@ -1,5 +1,7 @@
 # Live Music Search
 
+**NOTE:** This site is no longer actively maintained, and some features may be defunct.
+
 An app for searching Ticketmaster events for live music performances
 
 ![A screenshot of the app showing a search for Foo Fighters concerts with a date range and Google Maps](./assets/Images/screenshot-1.png)
